@@ -1,0 +1,1 @@
+# No authorized ad sellers configured yet. Add your actual provider-issued ads.txt records before enabling ads.

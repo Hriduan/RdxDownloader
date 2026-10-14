@@ -1,0 +1,24 @@
+name: Check RdxDownloader
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pip install -r requirements-docker.txt
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python scripts/doctor.py --strict
+      - run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - run: python scripts/check_project.py
+      - run: node --check assets/js/app.js && node --check assets/js/ads.js

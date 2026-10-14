@@ -1,0 +1,69 @@
+{
+  "checks": 34,
+  "cases": [
+    {
+      "name": "google",
+      "interceptedProviderRequests": 1,
+      "pushes": 12,
+      "banners": 0,
+      "natives": 0,
+      "pause": 1,
+      "adInTool": 0,
+      "overflow": false,
+      "shownAds": 12
+    },
+    {
+      "name": "adsterra",
+      "interceptedProviderRequests": 2,
+      "pushes": 0,
+      "banners": 1,
+      "natives": 1,
+      "adInTool": 0,
+      "overflow": false,
+      "shownAds": 2
+    },
+    {
+      "name": "rejected",
+      "interceptedProviderRequests": 0,
+      "pushes": 0,
+      "banners": 0,
+      "natives": 0,
+      "adInTool": 0,
+      "overflow": false,
+      "shownAds": 0
+    },
+    {
+      "name": "privacy-signal",
+      "interceptedProviderRequests": 0,
+      "pushes": 0,
+      "banners": 0,
+      "natives": 0,
+      "adInTool": 0,
+      "overflow": false,
+      "shownAds": 0
+    },
+    {
+      "name": "preview-existing-choice",
+      "interceptedProviderRequests": 0,
+      "pushes": 0,
+      "banners": 0,
+      "natives": 0,
+      "adInTool": 0,
+      "overflow": false,
+      "shownAds": 12
+    },
+    {
+      "name": "unfilled",
+      "interceptedProviderRequests": 1,
+      "pushes": 12,
+      "banners": 0,
+      "natives": 0,
+      "pause": 1,
+      "adInTool": 0,
+      "overflow": false,
+      "shownAds": 0
+    }
+  ],
+  "realProviderRequests": 0,
+  "limits": "Fixtures only; no real serving, CMP publication, policy compliance or approval is verified."
+}

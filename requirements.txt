@@ -1,0 +1,3 @@
+# Official PyPI currently reports this yt-dlp release. default includes its matched EJS solver,
+# native HLS crypto and standard networking dependencies. Update this matched set together.
+yt-dlp[default]==2026.8.19

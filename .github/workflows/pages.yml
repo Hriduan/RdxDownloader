@@ -1,0 +1,41 @@
+name: Deploy frontend only (backend required separately)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare public files
+        env:
+          API_BASE: ${{ vars.RDX_API_BASE_URL }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, shutil
+          from urllib.parse import urlsplit
+          api = os.environ.get('API_BASE', '').rstrip('/')
+          u = urlsplit(api)
+          if u.scheme != 'https' or not u.hostname or u.path not in ('','/') or u.username or u.password or u.query or u.fragment:
+              raise SystemExit('Set repository variable RDX_API_BASE_URL to the root HTTPS origin of your deployed backend first.')
+          out = pathlib.Path('_site'); out.mkdir()
+          for file in ['index.html', 'VERSION', '.nojekyll', 'ads.txt', 'robots.txt']:
+              shutil.copyfile(file, out / file)
+          shutil.copytree('assets', out / 'assets')
+          (out / 'assets/js/config.js').write_text('window.RDX_CONFIG = '+json.dumps({'apiBase':api,'pollIntervalMs':1500})+';\n')
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deployment

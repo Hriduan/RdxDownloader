@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+if [[ -x .venv/bin/python ]]; then PYTHON=.venv/bin/python; elif [[ -x "$HOME/.local/share/rdxdownloader/venv/bin/python" ]]; then PYTHON="$HOME/.local/share/rdxdownloader/venv/bin/python"; else PYTHON=python; fi
+"$PYTHON" scripts/doctor.py
+printf '\nStarting the local backend. Open http://127.0.0.1:%s on this device.\n' "${PORT:-8080}"
+printf 'Keep this terminal running. Source upload alone does not start a backend.\n\n'
+exec "$PYTHON" -m server.app

@@ -1,0 +1,76 @@
+{
+  "checks": 95,
+  "cases": [
+    {
+      "name": "desktop",
+      "externalRequests": 0
+    },
+    {
+      "name": "mobile",
+      "externalRequests": 0
+    },
+    {
+      "name": "mobile FAQ",
+      "externalRequests": 0
+    },
+    {
+      "name": "dark",
+      "externalRequests": 0
+    },
+    {
+      "name": "formats 1440",
+      "externalRequests": 0
+    },
+    {
+      "name": "ready 1440",
+      "externalRequests": 0
+    },
+    {
+      "name": "formats 390",
+      "externalRequests": 0
+    },
+    {
+      "name": "ready 390",
+      "externalRequests": 0
+    },
+    {
+      "name": "formats 320",
+      "externalRequests": 0
+    },
+    {
+      "name": "ready 320",
+      "externalRequests": 0
+    },
+    {
+      "name": "error",
+      "externalRequests": 0
+    },
+    {
+      "name": "backend missing",
+      "externalRequests": 0
+    },
+    {
+      "name": "ad preview 1440",
+      "externalRequests": 0
+    },
+    {
+      "name": "ad preview 390",
+      "externalRequests": 0
+    },
+    {
+      "name": "ad preview 320",
+      "externalRequests": 0
+    },
+    {
+      "name": "dialogs",
+      "externalRequests": 0
+    },
+    {
+      "name": "backend settings",
+      "externalRequests": 0
+    }
+  ],
+  "realThirdPartyMediaRequests": 0,
+  "liveAdRequests": 0,
+  "limitations": "UI fixtures do not establish real platform support, fill, consent/legal compliance or provider approval."
+}

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Termux/Linux/macOS/Git Bash: run from the extracted project folder with bash update.
+# No force pushes, destructive resets, or credential storage.
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+if command -v python3 >/dev/null 2>&1; then
+    exec python3 scripts/release.py "$@"
+elif command -v python >/dev/null 2>&1; then
+    exec python scripts/release.py "$@"
+else
+    echo 'Python is missing. In Termux run: pkg install python git' >&2
+    exit 1
+fi

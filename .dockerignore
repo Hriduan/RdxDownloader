@@ -1,0 +1,13 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+.venv
+__pycache__
+node_modules
+downloads
+data
+tests
+docs/images
+*.zip

@@ -1,0 +1,3 @@
+-r requirements.txt
+# Docker/Linux runtime. On Android install native Deno using Termux pkg instead.
+deno==2.9.7
