@@ -1,5 +1,5 @@
 """One yt-dlp task per process. Input/output are JSON via stdin/stdout.
-Do not enable user-controlled options, generic extraction, cookies, external downloaders,
+Do not enable user-controlled options, cookies, external downloaders,
 remote JS component downloads or FFmpeg network downloading. Bundled EJS runs through Deno’s sandbox.
 """
 import json
@@ -43,8 +43,20 @@ def eligible(f):
             and f.get('ext') in EXTENSIONS and SAFE_ID.fullmatch(str(f.get('format_id', ''))))
 
 
+def source_formats(info):
+    """yt-dlp's direct-media result can be a single top-level format, not a list."""
+    listed = info.get('formats')
+    if isinstance(listed, list) and listed:
+        return listed
+    if not isinstance(info.get('url'), str) or not info['url']:
+        return []
+    single = dict(info)
+    single['format_id'] = str(single.get('format_id') or '0')
+    return [single] if eligible(single) else []
+
+
 def format_catalog(info):
-    raw = [f for f in info.get('formats', []) if eligible(f)]
+    raw = [f for f in source_formats(info) if eligible(f)]
     audio = [f for f in raw if f.get('vcodec') == 'none' and f.get('acodec') not in (None, 'none')]
     catalog = []
     for f in raw:
@@ -159,7 +171,7 @@ def main():
         info = ydl.extract_info(url, download=False)
         if not info or info.get('is_live') or 'entries' in info:
             raise ValueError('This source is no longer an eligible single video.')
-        current = {str(f.get('format_id')): f for f in info.get('formats', []) if eligible(f)}
+        current = {str(f.get('format_id')): f for f in source_formats(info) if eligible(f)}
         if any(x not in current for x in ids):
             raise ValueError('This format changed or is no longer supported. Inspect the link again.')
         ydl.process_info(info)

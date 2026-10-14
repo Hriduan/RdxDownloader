@@ -11,7 +11,7 @@ const info={inspection:'synthetic-fixture',title:'A little blue. A little motion
 async function fresh(width=1440,{dark=false,preview=false,error=false,offline=false,missingRuntime=false}={}){const context=await browser.newContext({viewport:{width,height:width<600?1000:1100},colorScheme:dark?'dark':'light',reducedMotion:'reduce'}),external=[],errors=[];let polls=0;
 await context.route('https://**/*',r=>{external.push(r.request().url());r.abort()});
 await context.route(BASE+'/api/**',async r=>{const u=new URL(r.request().url());let body,status=200;
-if(offline){body={error:'Backend missing'};status=404}else if(u.pathname==='/api/health')body={service:'RdxDownloader',downloadsReady:true,version:'1.0.1',...(missingRuntime?{dependencies:{ytDlp:'2026.8.19',ffmpeg:true,ffprobe:true,deno:false,ejs:'0.8.0',youtubeRuntimeReady:false}}:{})};
+if(offline){body={error:'Backend missing'};status=404}else if(u.pathname==='/api/health')body={service:'RdxDownloader',downloadsReady:true,version:'1.0.2',...(missingRuntime?{dependencies:{ytDlp:'2026.8.19',ffmpeg:true,ffprobe:true,deno:false,ejs:'0.8.0',youtubeRuntimeReady:false}}:{})};
 else if(u.pathname==='/api/inspect'){body=error?{error:'This source is unsupported, restricted or unavailable.'}:info;status=error?422:200}
 else if(u.pathname==='/api/download')body={id:'fixture-job'};
 else if(u.pathname==='/api/jobs/fixture-job')body=++polls<2?{status:'processing',progress:65,detail:'Preparing authorized synthetic streams.'}:{status:'ready',progress:100,detail:'Simulated UI preview. No third-party media downloaded.',downloadUrl:'/api/files/fixture-job'};
