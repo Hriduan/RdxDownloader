@@ -77,7 +77,7 @@ def check_identity():
     for name in ('user.name', 'user.email'):
         result = git('config', '--get', name, check=False)
         if result.returncode or not result.stdout.strip():
-            raise ValueError('Git identity is missing. Set git config user.name and user.email in this project first.')
+            raise ValueError('Git identity is missing. Run bash scripts/setup-github.sh once, or set git config user.name and user.email in this project.')
         values.extend(['-c', name + '=' + result.stdout.strip()])
     return values
 

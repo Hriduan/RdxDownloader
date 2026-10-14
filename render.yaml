@@ -1,0 +1,30 @@
+# Reference blueprint. The account's existing service is already configured.
+# Do not apply this unless you intend to create another service.
+services:
+  - type: web
+    name: rdxdownloader
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 8080
+      - key: RDX_ALLOWED_ORIGINS
+        value: https://hriduan.github.io
+      - key: RDX_MAX_WORKERS
+        value: '1'
+      - key: RDX_MAX_FILE_MB
+        value: '128'
+      - key: RDX_MAX_DURATION_SECONDS
+        value: '600'
+      - key: RDX_MAX_JOB_SECONDS
+        value: '900'
+      - key: RDX_RATE_BYTES
+        value: '1048576'
+      - key: RDX_REQUESTS_PER_MINUTE
+        value: '6'

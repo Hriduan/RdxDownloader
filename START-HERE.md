@@ -1,11 +1,31 @@
-# RdxDownloader v1.0.1 — start here
+# RdxDownloader v1.0.2 — connected hosting
 
-1. This ZIP contains **all** files. Extract the single RdxDownloader folder and upload/merge its contents into the repository root, including hidden .github files. Preserve .git, private configuration and your newer work.
-2. **The screenshot's Git history error is fixed in the included update helper.** Run `bash update --dry-run`, then `bash update` and review the snapshot before typing RELEASE. No force push or history reset is used. See docs/TERMUX.md.
-3. Source upload is not backend deployment. GitHub Pages cannot run Python/FFmpeg. On supported 64-bit Termux: `bash scripts/setup-termux.sh`, then `bash start`. Open http://127.0.0.1:8080 on the same phone while Termux runs.
-4. For public hosting, use the included Docker backend and docs/DEPLOYMENT.md. The browser now has Backend settings to connect a separately deployed HTTPS origin.
-5. Run `python scripts/doctor.py --strict` using the backend's Python environment. Full YouTube extraction needs a matching EJS solver + Deno, now included in the Linux Docker requirements and native Termux setup.
-6. Facebook, YouTube, Instagram, Bilibili and TikTok link families are recognized; other extractors/direct public media are best-effort. No private access, DRM bypass, source watermark removal, universal compatibility, unlimited resolution or missing-audio restoration is promised.
-7. Twelve manual ad positions remain outside the downloader. They are disabled until you supply approved codes for this domain. See docs/ADVERTISING.md.
+- Frontend: https://hriduan.github.io/RdxDownloader/
+- Hosted engine and same-origin site: https://rdxdownloader.onrender.com
+- Live health: https://rdxdownloader.onrender.com/api/health
 
-Before public launch add a monitored operator contact, HTTPS, egress isolation, edge abuse limits and required privacy/rights notices. The code is free; hosting/bandwidth and provider approvals are not guaranteed free.
+The GitHub Pages configuration now selects the real backend automatically. Same-origin Docker/Termux hosting still uses its own engine. A blank old browser override no longer blocks the deployed default.
+
+## Publish from your device
+
+Extract this complete archive, copy its contents into your existing repository root (not an extra nested folder), and preserve `.git` and private settings. Review the changes. Then run:
+
+```bash
+bash update
+```
+
+No RELEASE confirmation word is needed. This is a publishing command; review before running it. `bash update --review` restores an interactive confirmation and `bash update --dry-run` changes nothing. Render auto-deploys main; GitHub Pages remains configured for main/root.
+
+If Git identity or GitHub authentication has never been configured on YOUR device, run once:
+
+```bash
+bash scripts/setup-github.sh
+```
+
+Authorize with GitHub's device-code page in your own browser. The remote agent's browser login cannot configure your phone's Git credentials. The helper reuses GitHub CLI's normal credential storage. Without an OS keyring, gh may use a token file: protect your home directory, never share it, and use SSH/OS-agent authentication instead if you require encrypted credential storage. Tokens can expire or be revoked; no promise of permanent authentication is made.
+
+## Free hosting limits
+
+The selected Render plan is Free. It sleeps after 15 idle minutes and can take about a minute to wake. 128 MB/file, 10-minute source duration and one worker are configured to reduce resource usage. A host restart/deploy removes temporary files and job state. Monthly usage or external traffic limits may suspend service. No artificial keep-alive service is installed.
+
+Use only public supported media you have permission to download. No watermark is added, but source watermarks may remain. No universal compatibility, DRM bypass or private-account access is provided. Ads remain disabled pending approved codes and consent setup.

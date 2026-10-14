@@ -4,10 +4,18 @@
 
 <br>
 
-<img src="docs/images/badge-version.svg" alt="Current release v1.0.1">
+<img src="docs/images/badge-version.svg" alt="Current release v1.0.2">
 <img src="docs/images/badge-python.svg" alt="Python 3.11 or newer">
 <img src="docs/images/badge-license.svg" alt="Project code: MIT license">
 <img src="docs/images/badge-ads.svg" alt="12 manual advertising slots">
+
+## Live deployment
+
+[Open RdxDownloader](https://hriduan.github.io/RdxDownloader/) · [Hosted engine](https://rdxdownloader.onrender.com) · [Health check](https://rdxdownloader.onrender.com/api/health)
+
+GitHub Pages now connects automatically. Render Free is an on-demand hobby host, not guaranteed always-on: expect cold starts and monthly quotas. The current backend permits 128 MB files and 10-minute source videos, with one worker. See [START-HERE.md](START-HERE.md) and the deployment verification report for exact tests and limits.
+
+`bash update` publishes without the RELEASE word. Use `bash update --review` for interactive confirmation. One-time device authentication is still needed if Git on your own phone has never been set up: `bash scripts/setup-github.sh`. No credentials are bundled here.
 
 ### One link. Your quality. A little more freedom.
 
@@ -137,7 +145,7 @@ The local choices panel is not a certified CMP. Consent rejection and browser pr
 RdxDownloader/
 ├── index.html                 # Main website entry point stays at the root
 ├── README.md                  # This illustrated project guide
-├── VERSION                    # Current release 1.0.1
+├── VERSION                    # Current release 1.0.2
 ├── update                     # Safe Bash release entry point
 ├── ads.txt                    # Add actual provider-issued authorization
 ├── robots.txt
@@ -176,7 +184,7 @@ RdxDownloader/
 python scripts/release.py
 ```
 
-The initial release was **v1.0.0**; this complete update is **v1.0.1**, followed by **v1.0.2** … Standard semantic patch increments are used. No old project tags are included. The helper targets **Hriduan/RdxDownloader**, refuses unrelated origins and safely publishes ZIP imports/divergent local histories from a reviewed fresh remote-main clone, and does **not** force-push, replace tags, or save credentials in plaintext.
+The initial release was **v1.0.0**; this connected-hosting update is **v1.0.2**, followed by **v1.0.3** … Standard semantic patch increments are used. No old project tags are included. The helper targets **Hriduan/RdxDownloader**, refuses unrelated origins and safely publishes ZIP imports/divergent local histories from a reviewed fresh remote-main clone, and does **not** force-push, replace tags, or save credentials in plaintext.
 
 The GitHub release workflow creates a source ZIP on new version tags. Backend deployment is separate. [Release behavior and recovery →](docs/RELEASING.md)
 

@@ -1,19 +1,7 @@
-# Complete-package fix, v1.0.1
+# v1.0.2 publishing fix
 
-This is **not** the earlier small patch ZIP. This archive includes every website, backend, test, guide and workflow file. Extract the single RdxDownloader folder, then merge its contents into the intended project root. Preserve `.git`, private configuration and your own newer work. Read docs/TERMUX.md first.
+`bash update` now supplies the publishing confirmation automatically. `bash update --review` retains the old review prompt. The safe imported-ZIP publisher, atomic push and no-force-push rules remain.
 
-The screenshot's history mismatch is handled by the included safe snapshot publisher: a fresh temporary clone is based on remote main, reviewed local files are copied in, and a normal commit/tag is pushed. There is no destructive reset, credential storage or force push. Remote-only files remain; same-named remote files can be replaced by your reviewed local copies.
+Your own phone must authorize GitHub once with `bash scripts/setup-github.sh` unless its Git credentials and author identity already work. The helper does not collect passwords. GitHub CLI storage and token expiry still apply. Never put a token in a repository URL, config.js or this ZIP.
 
-```bash
-bash update --dry-run
-bash update
-```
-
-Backend startup is a separate action:
-
-```bash
-bash scripts/setup-termux.sh  # native supported 64-bit Termux only
-bash start                  # open http://127.0.0.1:8080 on the same phone
-```
-
-For public hosting, use the Docker backend in docs/DEPLOYMENT.md. GitHub Pages alone cannot execute the downloader. No source upload or Git fix can change that hosting limitation.
+A release publishes source. The already-created Render service automatically rebuilds main after successful commits. A failed push is not a successful deployment. Check the Render dashboard and live `/api/health` after updating. See START-HERE.md.

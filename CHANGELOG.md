@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.2
+- Connected GitHub Pages to the deployed Render HTTPS backend.
+- Added free-host cold-start messaging and bounded request timeouts.
+- bash update no longer requires typing RELEASE; --review remains available.
+- Added one-time GitHub CLI device authorization instructions and free-tier configuration.
+- Added a generated audiovisual fixture for deployed end-to-end verification.
+
+
 ## v1.0.1 — Compatibility and Termux repair
 
 - Included the safe ZIP-import/snapshot publisher and regression tests for unrelated Git histories.

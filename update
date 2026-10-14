@@ -2,6 +2,14 @@
 # Termux/Linux/macOS/Git Bash: run from the extracted project folder with bash update.
 # No force pushes, destructive resets, or credential storage.
 set -euo pipefail
+# Running bash update explicitly approves publishing. --review restores confirmation.
+review=false
+if [[ "${1:-}" == "--review" ]]; then review=true; shift; fi
+if ! "$review"; then set -- --yes "$@"; fi
+# Reuse GitHub CLI's credential helper if already authenticated; never store secrets here.
+if command -v gh >/dev/null 2>&1 && gh auth status --hostname github.com >/dev/null 2>&1; then
+    gh auth setup-git --hostname github.com
+fi
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 if command -v python3 >/dev/null 2>&1; then
     exec python3 scripts/release.py "$@"
