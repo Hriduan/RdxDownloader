@@ -1,20 +1,19 @@
-# v1.0.1 verification
+# v1.0.2 connected-hosting verification
 
 | Check | Result | Scope |
 |---|---|---|
-| Python backend/security/runtime/release tests | 45 passed | Includes public-IP guards, limits, format selection, direct-media metadata, platform routing, actionable errors and version selection |
-| Real synthetic stream integration | Passed | Generated 640×360 video plus tone audio fetched by yt-dlp and locally merged by FFmpeg into MP4 with both tracks |
-| Generic direct-media integration | Passed | Own generated direct MP4, locally extracted using the Generic extractor |
-| Deno runtime integration | Passed | Actual sandbox invocation; file and network operations denied |
-| Git release regression tests | 8 passed, included above | Local bare repos: imported/unrelated history, unborn branch, repeated releases, cancellation, rejected push, normal clone and dry-run |
-| Browser fixtures | 95 assertions / 17 cases | 320/390/1440px, light/dark, source formats, quality filtering, missing backend/runtime, backend settings, errors and dialogs |
-| Ad fixtures | 34 assertions / 6 cases | Consent, unique placements, no-fill collapse and downloader separation; provider traffic intercepted |
-| Source/project audit | Passed | Root index, 12 unique manual ad positions outside downloader, syntax and release-helper checks |
-| Visual inspection | Passed | Desktop/mobile helper renders, mobile quality list, runtime checklist, backend settings, dark mode and ad layout |
-| Release dry-run | Passed | v1.0.1 planned; no network access, commits, tags or pushes |
+| Python backend/runtime/release tests | 53 passed | Includes direct top-level media, no-prompt wrapper, generated fixture and earlier security/release regressions |
+| UI fixtures | 95 assertions / 17 cases | Layouts, quality filtering, dialogs, failure states and backend settings; simulated catalogs/jobs |
+| Ad fixtures | 34 assertions / 6 cases | Intercepted providers, no real impressions or clicks |
+| Live Render health | Passed | Real HTTPS response; all backend dependencies reported present |
+| Live CORS | Passed | Allows https://hriduan.github.io |
+| Live inspection → job → file | Passed | Original generated 2-second H.264/AAC MP4 fetched from this repository |
+| Downloaded media validation | Passed | 320×180 video and audio tracks; 22,105 bytes; byte-for-byte same as original |
+| Cloud deployment | Performed | Render Docker Free, linked to this repository's main; GitHub connection restricted to this repo |
+| Repository publication | Performed | Reviewed browser commits; no force pushes or credentials stored in project |
 
-Browser source catalogs and jobs are simulated. Real media integration uses only generated local test media; its loopback exception exists only in tests. Production public-network guards remain enabled. No real provider requests, impressions or ad clicks occurred.
+A hosted test revealed that direct media can have no formats list. The worker now safely handles an eligible top-level media record, while retaining DRM/protocol checks. The successful live test was repeated after deploying that fix.
 
-Platform tests verify URL routing, not end-to-end public platform downloads. No real Facebook, YouTube, Instagram, Bilibili or TikTok video was downloaded. This does not establish universal compatibility, source-watermark removal, legal permission or production security. Docker builds, physical Android/Termux execution, cloud deployment and pushes to the user's GitHub repository were not performed here.
+These tests do not establish that Facebook, YouTube, Instagram, Bilibili or TikTok will accept every source or datacenter IP. No real third-party platform media was downloaded. Physical Termux setup was not tested. Free hosting can sleep, restart or suspend at quotas; temporary jobs/files disappear on deploy/restart. No 24/7, unlimited bandwidth, error-free, universal support or source-watermark-removal promise is made.
 
-See [UI-QA.json](UI-QA.json), [AD-QA.json](AD-QA.json) and [BACKEND-QA.json](BACKEND-QA.json). Run the included diagnostics and tests on the actual deployment host.
+See LIVE-DEPLOYMENT-QA.json for the actual HTTPS test and UI-QA.json / AD-QA.json for browser fixtures. No private download capability is included in the report.

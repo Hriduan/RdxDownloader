@@ -1,3 +1,5 @@
+> **v1.0.2 live setup:** Render service https://rdxdownloader.onrender.com is configured on the Free plan, linked to Hriduan/RdxDownloader main, with /api/health, 128 MB files, 10-minute source duration, one worker and GitHub Pages CORS. The Pages frontend connects automatically. This free host can sleep or be suspended at quota limits; this is not unlimited always-on production hosting. render.yaml records the settings but applying it again can create a second service.
+
 > **v1.0.1:** The complete package fixes safe ZIP-import publishing, adds a portable Termux temporary directory, Deno + bundled EJS, backend URL settings and an offline doctor. For the screenshot error and native Android startup read [TERMUX.md](TERMUX.md). The Docker build now installs requirements-docker.txt (including Deno); regular requirements.txt includes matched EJS/native HLS dependencies.
 
 # Deploy RdxDownloader

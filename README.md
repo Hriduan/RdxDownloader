@@ -179,12 +179,12 @@ RdxDownloader/
 
 ```bash
 ./update --dry-run             # Does not change files, fetch, commit, tag or push
-./update                       # Review changes; type RELEASE to publish
+bash update                    # Publish reviewed changes without a RELEASE prompt
 # Without Bash:
 python scripts/release.py
 ```
 
-The initial release was **v1.0.0**; this connected-hosting update is **v1.0.2**, followed by **v1.0.3** … Standard semantic patch increments are used. No old project tags are included. The helper targets **Hriduan/RdxDownloader**, refuses unrelated origins and safely publishes ZIP imports/divergent local histories from a reviewed fresh remote-main clone, and does **not** force-push, replace tags, or save credentials in plaintext.
+The initial release was **v1.0.0**; this connected-hosting update is **v1.0.2**, followed by **v1.0.3** … Standard semantic patch increments are used. No old project tags are included. The helper targets **Hriduan/RdxDownloader**, refuses unrelated origins and safely publishes ZIP imports/divergent local histories from a reviewed fresh remote-main clone, and does **not** force-push, replace tags, or collect credentials itself.
 
 The GitHub release workflow creates a source ZIP on new version tags. Backend deployment is separate. [Release behavior and recovery →](docs/RELEASING.md)
 

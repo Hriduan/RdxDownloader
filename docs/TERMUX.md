@@ -1,10 +1,10 @@
-# RdxDownloader v1.0.1 — Termux and the screenshot error
+# RdxDownloader v1.0.2 — Termux and the screenshot error
 
 ## What failed in the screenshot?
 
 `Remote main is not an ancestor of HEAD` is a Git history mismatch, not a video-extraction error. A ZIP has no Git history. Initializing Git in that folder creates a history unrelated to the existing GitHub repository. The old helper refused to push it.
 
-The complete v1.0.1 ZIP includes the fixed publisher. For a ZIP import/unrelated history it clones current remote `main` into temporary storage, overlays your reviewed local project files, commits on top of that remote history, and makes a normal atomic push with a new version tag. Remote-only files and GitHub history stay intact. Same-named remote files can be replaced by the local version; review the file list. Local deletions are not propagated in snapshot mode.
+The complete v1.0.2 ZIP includes the fixed publisher. For a ZIP import/unrelated history it clones current remote `main` into temporary storage, overlays your reviewed local project files, commits on top of that remote history, and makes a normal atomic push with a new version tag. Remote-only files and GitHub history stay intact. Same-named remote files can be replaced by the local version; review the file list. Local deletions are not propagated in snapshot mode.
 
 **Never delete .git, use reset --hard, or force push just to solve this error.**
 
@@ -20,13 +20,13 @@ bash update --dry-run
 bash update
 ```
 
-Review the file list, then type `RELEASE` to publish. If you explicitly want fresh-remote snapshot mode even in a related checkout:
+Review changes before running `bash update`: it now approves publishing without typing RELEASE. Use `bash update --review` if you want the old confirmation prompt. If you explicitly want fresh-remote snapshot mode even in a related checkout:
 
 ```bash
 bash update --snapshot
 ```
 
-The package version starts at **1.0.1**, but the actual helper fetches remote tags and advances beyond the highest published semantic version when necessary. A dry run is local-only; it does not inspect GitHub. No force push or plaintext password storage is used.
+The package version starts at **1.0.2**, but the actual helper fetches remote tags and advances beyond the highest published semantic version when necessary. A dry run is local-only; it does not inspect GitHub. No force push or account password collection is used. GitHub CLI may store its token in a file on devices without an OS keyring; see START-HERE.md.
 
 Set your own Git author identity if Git asks for it:
 
@@ -86,3 +86,7 @@ Facebook public watch/reels/share links, YouTube videos/Shorts, Instagram public
 - https://github.com/yt-dlp/yt-dlp/wiki/EJS — supported runtimes and matching bundled solver
 - https://github.com/termux/termux-packages/tree/master/packages/python-yt-dlp — native package
 - https://github.com/termux/termux-packages/tree/master/packages/deno — Deno package and excluded architectures
+
+## Hosted backend
+
+The deployed Render engine is https://rdxdownloader.onrender.com. You do not need to keep Termux running for the hosted service. Local Termux startup remains an alternative. The hosted Free plan sleeps and has usage limits. `bash scripts/setup-github.sh` is one-time GitHub device authorization on your phone; later `bash update` reuses it until it expires or is revoked.

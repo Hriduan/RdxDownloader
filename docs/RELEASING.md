@@ -4,7 +4,7 @@ The project starts at **v1.0.0**, then v1.0.1, v1.0.2 and so on. VERSION stores 
 
 ```bash
 bash update --dry-run  # local read-only preview; no fetch, commit or push
-bash update            # fetch state, review files and type RELEASE to publish
+bash update            # publish reviewed files without a RELEASE word; use --review to confirm
 # Without Bash:
 python scripts/release.py
 ```
@@ -30,7 +30,7 @@ If local HEAD already includes remote main, the helper reviews/stages project ch
 If remote main is not an ancestor of local HEAD (or local HEAD does not exist), the helper:
 
 1. Lists the local publishable file snapshot and explains the replacement behavior.
-2. Asks you to type RELEASE before publishing.
+2. Publishes on explicit `bash update`; `--review` restores the RELEASE confirmation.
 3. Creates a fresh temporary clone of the actual remote main.
 4. Copies local nonignored project files into that clone. **Same-named remote files are replaced by your local copies**; make sure your local folder contains the version you intend to publish.
 5. Keeps remote-only files, commits the snapshot on top of current remote main, creates the version tag, and pushes main + that tag atomically.
@@ -73,6 +73,10 @@ GitHub must allow your account to push to this repository. Use an existing secur
 
 Eight additional local-Git regression scenarios passed: unrelated committed histories, no local commits, repeated imports/version increment, cancellation, a conventional clone, rejected atomic pushes, a read-only dry-run and private-path guards. Together with existing tests, **30 Python tests passed**. Tests used temporary local repositories only; no real GitHub push was attempted.
 
-## v1.0.1 complete package
+## v1.0.2 connected package
 
-The shipped version is 1.0.1. Actual releases fetch remote tags and choose a version higher than the highest published semantic version if needed, even when the extracted VERSION is older. `bash update --snapshot` explicitly uses a temporary clone of remote main; automatic mode uses it for unrelated/behind local history. Only remote-tracking refs may be refreshed with a leading + in fetch; no force push is made to GitHub. See TERMUX.md for the screenshot recovery steps.
+The shipped version is 1.0.2. Actual releases fetch remote tags and choose a version higher than the highest published semantic version if needed, even when the extracted VERSION is older. `bash update --snapshot` explicitly uses a temporary clone of remote main; automatic mode uses it for unrelated/behind local history. Only remote-tracking refs may be refreshed with a leading + in fetch; no force push is made to GitHub. See TERMUX.md for the screenshot recovery steps.
+
+## Authentication
+
+Browser sign-in on another computer is not Git authentication on your device. Run `bash scripts/setup-github.sh` once if needed. The CLI helper uses its own normal credential storage and no project credentials are bundled. A missing OS keyring may cause gh to use a token file; protect your home folder or use an SSH key with an OS agent instead. Revocation, expiry and account policy can require reauthorization.

@@ -1,0 +1,59 @@
+{
+  "backend": "https://rdxdownloader.onrender.com",
+  "source": "own generated two-second color-and-tone test clip",
+  "thirdPartyPlatformMediaDownloads": 0,
+  "health": {
+    "service": "RdxDownloader",
+    "version": "1.0.2",
+    "downloadsReady": true,
+    "dependencies": {
+      "ytDlp": "2026.8.19",
+      "ejs": "0.8.0",
+      "ffmpeg": true,
+      "ffprobe": true,
+      "deno": true,
+      "downloadsReady": true,
+      "youtubeRuntimeReady": true,
+      "notes": "Dependency presence only, not proof of runtime version, platform availability or source access. Use python scripts/doctor.py for version checks."
+    },
+    "maxFileMB": 128,
+    "maxDurationSeconds": 600
+  },
+  "corsAllowed": true,
+  "inspection": {
+    "title": "authorized-sample",
+    "formats": 1
+  },
+  "selectedFormat": {
+    "id": "0",
+    "kind": "video",
+    "label": "Source media",
+    "height": 0,
+    "fps": null,
+    "codec": "source",
+    "container": "mp4",
+    "size": null,
+    "audioLabel": "Audio availability unknown"
+  },
+  "attachment": "attachment; filename=\"RdxDownloader-ZAFHVLjP.mp4\"",
+  "bytes": 22105,
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 320,
+        "height": 180
+      },
+      {
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "2.000000"
+    }
+  },
+  "sameAsSource": true,
+  "status": "passed"
+}

@@ -1,22 +1,11 @@
 {
-  "version": "1.0.1",
-  "tests": 45,
+  "version": "1.0.2",
+  "tests": 53,
   "status": "passed",
-  "releaseRegressionTests": 8,
-  "syntheticMerge": {
-    "dimensions": [
-      640,
-      360
-    ],
-    "videoTrack": true,
-    "audioTrack": true,
-    "container": "mp4"
-  },
-  "genericDirectMedia": "own generated MP4",
-  "denoSandbox": "real permission-denial checks passed",
-  "realThirdPartyMediaDownloads": 0,
+  "realHostedOwnMediaTest": "passed",
+  "thirdPartyPlatformMediaDownloads": 0,
   "physicalTermuxTested": false,
-  "dockerBuildTested": false,
-  "userGithubPushes": 0,
-  "limits": "Local automated tests only; platform routing is not live download verification."
+  "cloudDeploymentPerformed": true,
+  "userRepositoryBrowserCommitsPerformed": true,
+  "limits": "Own generated media verified; not a universal public-platform compatibility test."
 }
