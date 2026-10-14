@@ -55,5 +55,10 @@
     }
   },
   "sameAsSource": true,
-  "status": "passed"
+  "status": "passed",
+  "liveSameOriginUi": {
+    "readyStatusVerified": true,
+    "sourceFormatsVisible": true,
+    "jobReachedReady": true
+  }
 }
